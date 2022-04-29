@@ -2,6 +2,7 @@ import sys
 import os
 import json
 import math
+import traceback
 
 if sys.version_info[0] < 3:
     print('This script requires Python 3 or higher')
@@ -13,7 +14,7 @@ print('First, enter the name of the file you want to split')
 try:
     # request file name
     file_name = input('filename: ')
-    f = open(file_name)
+    f = open(file_name, "r",encoding="ISO-8859-1")
     file_size = os.path.getsize(file_name)
     data = json.load(f)
     
@@ -24,7 +25,8 @@ try:
         print("JSON is not an Array of Objects")
         exit()
 
-except:
+except Exception as error:
+    traceback.print_exc()
     print('Error loading JSON file ... exiting')
     exit()
 
